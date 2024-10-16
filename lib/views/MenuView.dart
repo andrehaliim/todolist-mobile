@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todolist/components/Config.dart';
@@ -118,7 +117,7 @@ class _MenuViewState extends State<MenuView> {
                               const Text("here's your todo list", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),)
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           IconButton(onPressed: () async{
                             setState(() {
                               _todoListFuture = getTodoList(context);
@@ -160,7 +159,7 @@ class _MenuViewState extends State<MenuView> {
                                         width: defaultWidth/1.35,
                                         child: Text(data.title,
                                           style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold))),
-                                    Container(
+                                    SizedBox(
                                         width: defaultWidth,
                                         height: 2 * 14 * 1.5,
                                         child: Text(data.text,

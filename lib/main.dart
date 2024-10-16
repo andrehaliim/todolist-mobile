@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todolist/components/Loading.dart';
 import 'package:todolist/components/Config.dart';
+import 'package:todolist/components/Loading.dart';
 import 'package:todolist/proxys/LoginProxy.dart';
 import 'package:todolist/views/LoginView.dart';
 import 'package:todolist/views/MenuView.dart';
@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
           } else if (snapshot.hasData) {
             bool check = snapshot.data!;
             if (check) {
-              return MenuView();
+              return const MenuView();
             } else {
               return const LoginView();
             }

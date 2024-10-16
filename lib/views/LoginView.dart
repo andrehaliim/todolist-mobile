@@ -77,7 +77,7 @@ class _LoginViewState extends State<LoginView> {
                           SizedBox(height: defaultHeight/16,),
                           Image.asset('assets/images/logo.png'),
                           SizedBox(height: defaultHeight/12,),
-                          Container(
+                          SizedBox(
                             width: defaultWidth,
                             child: const Text(
                               'Login',
@@ -177,7 +177,7 @@ class _LoginViewState extends State<LoginView> {
                                     ),
                                     textAlign: TextAlign.center,
                                   ))),
-                          Container(
+                          SizedBox(
                             width: defaultWidth,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

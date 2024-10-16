@@ -13,7 +13,7 @@ showSuccessDialog(BuildContext context, String title, String message) {
       ),
       title: Column(
         children: [
-          Icon(
+          const Icon(
             CupertinoIcons.checkmark_circle,
             color: Colors.green,
             size: 70,
@@ -21,11 +21,11 @@ showSuccessDialog(BuildContext context, String title, String message) {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
         ],
       ),
-      content: Container(
+      content: SizedBox(
         width: defaultWidth,
         height: defaultHeight / 12,
         child: Center(
@@ -33,7 +33,7 @@ showSuccessDialog(BuildContext context, String title, String message) {
             message,
             textAlign: TextAlign.center,
             maxLines: 4,
-            style: TextStyle(fontSize: 15),
+            style: const TextStyle(fontSize: 15),
           ),
         ),
       ),
@@ -82,7 +82,7 @@ showFailedDialog(BuildContext context, String title, String message) {
       ),
       title: Column(
         children: [
-          Icon(
+          const Icon(
             CupertinoIcons.clear_circled,
             color: Colors.red,
             size: 70,
@@ -90,11 +90,11 @@ showFailedDialog(BuildContext context, String title, String message) {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
         ],
       ),
-      content: Container(
+      content: SizedBox(
         width: defaultWidth,
         height: defaultHeight / 12,
         child: Center(
@@ -102,7 +102,7 @@ showFailedDialog(BuildContext context, String title, String message) {
             message,
             textAlign: TextAlign.center,
             maxLines: 4,
-            style: TextStyle(fontSize: 15),
+            style: const TextStyle(fontSize: 15),
           ),
         ),
       ),
@@ -149,7 +149,7 @@ Future<bool> showConfirmationDialog(BuildContext context, String message) {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8), // Set border radius to 8 for slightly rounded corners
       ),
-      title: Column(
+      title: const Column(
         children: [
           Icon(
             CupertinoIcons.question_circle,
@@ -163,7 +163,7 @@ Future<bool> showConfirmationDialog(BuildContext context, String message) {
           ),
         ],
       ),
-      content: Container(
+      content: SizedBox(
         width: defaultWidth,
         height: defaultHeight / 12,
         child: Center(
@@ -171,7 +171,7 @@ Future<bool> showConfirmationDialog(BuildContext context, String message) {
             message,
             textAlign: TextAlign.center,
             maxLines: 4,
-            style: TextStyle(fontSize: 15),
+            style: const TextStyle(fontSize: 15),
           ),
         ),
       ),
@@ -205,7 +205,7 @@ Future<bool> showConfirmationDialog(BuildContext context, String message) {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             SizedBox(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 import 'package:todolist/components/Dialog.dart';
 import 'package:todolist/components/Loading.dart';
@@ -47,96 +46,96 @@ class _RegisterViewState extends State<RegisterView> {
       body: Container(
         width: defaultWidth,
         height: defaultHeight,
-        padding: EdgeInsets.only(bottom: 8, left: 8, right: 8),
+        padding: const EdgeInsets.only(bottom: 8, left: 8, right: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Create Account',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             ),
-            Text(
+            const Text(
               'Please enter your details',
               style: TextStyle(fontSize: 15),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Text(
+                margin: const EdgeInsets.only(left: 10),
+                child: const Text(
                   'Username',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 )),
             Container(
-              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.all(Radius.circular(20))),
+              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: TextField(
                 controller: usernameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(15),
                   border: InputBorder.none,
                   hintText: '',
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Text(
+                margin: const EdgeInsets.only(left: 10),
+                child: const Text(
                   'Name',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 )),
             Container(
-              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.all(Radius.circular(20))),
+              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: TextField(
                 controller: nameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(15),
                   border: InputBorder.none,
                   hintText: '',
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Text(
+                margin: const EdgeInsets.only(left: 10),
+                child: const Text(
                   'Email',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 )),
             Container(
-              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.all(Radius.circular(20))),
+              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: TextField(
                 controller: emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(15),
                   border: InputBorder.none,
                   hintText: '',
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Text(
+                margin: const EdgeInsets.only(left: 10),
+                child: const Text(
                   'Password',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 )),
             Container(
-              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.all(Radius.circular(20))),
+              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: TextField(
                 controller: passwordController,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(15),
+                  contentPadding: const EdgeInsets.all(15),
                   border: InputBorder.none,
                   hintText: '',
                   suffixIcon: IconButton(
@@ -153,21 +152,21 @@ class _RegisterViewState extends State<RegisterView> {
                 obscureText: hidePassword,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Text(
+                margin: const EdgeInsets.only(left: 10),
+                child: const Text(
                   'Password Confirmation',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 )),
             Container(
-              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.all(Radius.circular(20))),
+              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: TextField(
                 controller: confirmationController,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(15),
+                  contentPadding: const EdgeInsets.all(15),
                   border: InputBorder.none,
                   hintText: '',
                   suffixIcon: IconButton(
@@ -184,7 +183,7 @@ class _RegisterViewState extends State<RegisterView> {
                 obscureText: hideConfirmation,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Container(
               width: defaultWidth,
               height: defaultHeight * 0.075,
