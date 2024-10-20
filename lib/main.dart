@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todolist/TestNotification.dart';
 import 'package:todolist/components/Config.dart';
 import 'package:todolist/components/Loading.dart';
 import 'package:todolist/proxys/LoginProxy.dart';
@@ -18,8 +19,10 @@ class MyHttpOverrides extends HttpOverrides{
   }
 }
 
-void main() {
+void main() async {
   HttpOverrides.global = MyHttpOverrides();
+  WidgetsFlutterBinding.ensureInitialized();
+  await TestNotification.init();
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => Config())],

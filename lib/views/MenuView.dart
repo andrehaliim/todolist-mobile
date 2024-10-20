@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todolist/TestNotification.dart';
 import 'package:todolist/components/Config.dart';
 import 'package:todolist/components/Dialog.dart';
 import 'package:todolist/components/Loading.dart';
@@ -57,6 +58,12 @@ class _MenuViewState extends State<MenuView> {
           addTodoDialog(context, defaultWidth, defaultHeight);
         }, icon: const Icon(Icons.add, size: 30,)),
         actions: [
+          IconButton(onPressed: () {
+            TestNotification.showSimpleNotification(
+                title: 'simple notification',
+                body: 'body notification',
+                payload: 'payload notification');
+          }, icon: const Icon(Icons.notifications, size: 25,)),
           IconButton(onPressed: () async{
             bool confirm = await showConfirmationDialog(context, 'Are you sure want to logout?');
             if(confirm){
