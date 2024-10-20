@@ -1,4 +1,6 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class TestNotification {
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -38,4 +40,42 @@ class TestNotification {
         0, title, body, notificationDetails,
         payload: payload);
   }
+
+  static Future showScheduledNotification({
+    required String title,
+    required String body,
+    required String payload,
+    required DateTime scheduledDateTime, // Add this parameter to specify the date and time
+  }) async {
+    // Initialize time zones
+    tz.initializeTimeZones();
+
+    // Convert the scheduledDateTime to a TZDateTime in the local time zone
+    final tz.TZDateTime scheduledTime = tz.TZDateTime.from(scheduledDateTime, tz.local);
+
+    const AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails('your channel id', 'your channel name',
+        channelDescription: 'your channel description',
+        importance: Importance.max,
+        priority: Priority.high,
+        ticker: 'ticker');
+
+    const NotificationDetails notificationDetails =
+    NotificationDetails(android: androidNotificationDetails);
+
+    // Schedule the notification using zonedSchedule
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      0, // Notification ID
+      title, // Notification title
+      body, // Notification body
+      scheduledTime, // Scheduled time
+      notificationDetails, // Notification details
+      androidAllowWhileIdle: true, // Ensure the notification is shown even if the device is idle
+      uiLocalNotificationDateInterpretation:
+      UILocalNotificationDateInterpretation.wallClockTime,
+      matchDateTimeComponents: DateTimeComponents.time, // This can be adjusted based on your needs (e.g., to repeat daily)
+      payload: payload, // Payload data
+    );
+  }
+
 }

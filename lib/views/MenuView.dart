@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todolist/TestNotification.dart';
@@ -50,6 +52,7 @@ class _MenuViewState extends State<MenuView> {
     Config config = Provider.of<Config>(context);
     double defaultWidth = MediaQuery.of(context).size.width;
     double defaultHeight = MediaQuery.of(context).size.height;
+    String formattedTime = DateFormat('hh:mm a').format(DateTime.now());
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -58,11 +61,18 @@ class _MenuViewState extends State<MenuView> {
           addTodoDialog(context, defaultWidth, defaultHeight);
         }, icon: const Icon(Icons.add, size: 30,)),
         actions: [
-          IconButton(onPressed: () {
-            TestNotification.showSimpleNotification(
+          IconButton(onPressed: () async {
+            /*TestNotification.showSimpleNotification(
                 title: 'simple notification',
                 body: 'body notification',
-                payload: 'payload notification');
+                payload: 'payload notification');*/
+
+            await TestNotification.showScheduledNotification(
+              title: "Test",
+              body: "This is a scheduled notification",
+              payload: "payload data",
+              scheduledDateTime: DateTime.now().add(Duration(seconds: 10)), // Schedule 10 seconds from now
+            );
           }, icon: const Icon(Icons.notifications, size: 25,)),
           IconButton(onPressed: () async{
             bool confirm = await showConfirmationDialog(context, 'Are you sure want to logout?');
@@ -145,12 +155,11 @@ class _MenuViewState extends State<MenuView> {
                             margin: const EdgeInsets.fromLTRB(8, 4, 4, 8),
                             padding: const EdgeInsets.all(8),
                             width: defaultWidth,
-
                             decoration: BoxDecoration(
                               border: Border.all(color: config.black, width: 1.0),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Stack(
+                            child: Row(
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,11 +172,26 @@ class _MenuViewState extends State<MenuView> {
                                               width: 1.0,
                                             ),
                                           ),),
-                                        width: defaultWidth/1.35,
-                                        child: Text(data.title,
-                                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold))),
-                                    SizedBox(
-                                        width: defaultWidth,
+                                        width: defaultWidth/1.20,
+                                        child: Row(
+                                          children: [
+                                            SizedBox(
+                                              width: defaultWidth/1.65,
+                                              child: Text(data.title,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                                            ),
+                                            Spacer(),
+                                            Icon(Icons.access_time, size: 15,),
+                                            SizedBox(width: 2,),// Your chosen icon
+                                            Text(
+                                              formattedTime,
+                                              style: TextStyle(fontSize: 14), // Customize text style as needed
+                                            )
+                                          ],
+                                        )),
+                                    Container(
+                                        width: defaultWidth/1.20,
                                         height: 2 * 14 * 1.5,
                                         child: Text(data.text,
                                           maxLines: 2,
@@ -175,39 +199,38 @@ class _MenuViewState extends State<MenuView> {
                                           style: const TextStyle(fontSize: 14, height: 1.5),))
                                   ],
                                 ),
-                                Positioned(
-                                  top: 0, right:0,
-                                  child:
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        GestureDetector(
-                                          child: const Icon(Icons.edit, size: 20, color: Colors.black,),
-                                          onTap: () async{
-                                              await editTodoDialog(context, defaultWidth, defaultHeight, data);
-                                          },
-                                        ),
-                                        const SizedBox(width: 10,),
-                                        GestureDetector(
-                                          child: const Icon(Icons.delete, size: 20, color: Colors.red,),
-                                          onTap: () async{
-                                            bool delete = await showConfirmationDialog(context, 'Delete this todo?');
-                                            if(delete){
-                                              bool success = await deleteTodoList(context, data.id);
-                                              if(success)
-                                                {
-                                                  setState(() {
-                                                    _todoListFuture = getTodoList(context);
-                                                    _userFuture = getUserInfo(context);
-                                                    _combinedFuture = Future.wait([_todoListFuture, _userFuture]);
-                                                  });
-                                                }
-                                            }
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),)
+                                Spacer(),
+                                Container(
+                                  height: defaultHeight/11.5,
+                                  child: Column(
+                                    children: [
+                                      GestureDetector(
+                                        child: const Icon(Icons.edit, size: 20, color: Colors.black,),
+                                        onTap: () async{
+                                            await editTodoDialog(context, defaultWidth, defaultHeight, data);
+                                        },
+                                      ),
+                                      Spacer(),
+                                      GestureDetector(
+                                        child: const Icon(Icons.delete, size: 20, color: Colors.red,),
+                                        onTap: () async{
+                                          bool delete = await showConfirmationDialog(context, 'Delete this todo?');
+                                          if(delete){
+                                            bool success = await deleteTodoList(context, data.id);
+                                            if(success)
+                                              {
+                                                setState(() {
+                                                  _todoListFuture = getTodoList(context);
+                                                  _userFuture = getUserInfo(context);
+                                                  _combinedFuture = Future.wait([_todoListFuture, _userFuture]);
+                                                });
+                                              }
+                                          }
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
                           );
